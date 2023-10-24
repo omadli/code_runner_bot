@@ -25,7 +25,7 @@ class DatabaseMiddleware(BaseMiddleware):
                 username=event.from_user.username
             )
             await db_user.save()
-            cache.set("user" + str(user_id), db_user, ttl=2*60*60)
+            await cache.set("user" + str(user_id), db_user, ttl=2*60*60)
         else:
             if db_user.full_name != event.from_user.full_name or db_user.username != event.from_user.username:
                 logging.debug(db_user.full_name, event.from_user.full_name)
@@ -33,7 +33,7 @@ class DatabaseMiddleware(BaseMiddleware):
                 db_user.full_name = event.from_user.full_name
                 db_user.username = event.from_user.username
                 await db_user.save()
-                cache.set("user" + str(user_id), db_user, ttl=2*60*60)
+                await cache.set("user" + str(user_id), db_user, ttl=2*60*60)
                 
         data['db_user'] = db_user
         
