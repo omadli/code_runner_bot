@@ -37,7 +37,7 @@ def run_in_message(language: dict, router: Router):
             if len(output) > 2000:
                 await msg.reply("Natija hajmi juda katta, ruxsat etilgan hajm - 2000 ta belgi")
             else:
-                if response.compile:
+                if len(response.compile.output):
                     await msg.reply("Compilation:" + f"\n<code>{html.escape(response.compile.output)}</code>")
                 error = response.run.stderr
                 if error:
