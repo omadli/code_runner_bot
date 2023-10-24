@@ -49,7 +49,7 @@ def run_in_message(language: dict, router: Router):
     async def empty_cmd(msg: types.Message):
         m = await msg.bot.send_message(
             chat_id=msg.from_user.id,
-            text=f"/{command}\n<pre><code class='language-{language['name']}'>{html.escape(language['example'])}</code></pre>"
+            text=f"/{command}\n<pre><code class='language-{language['command']}'>{html.escape(language['example'])}</code></pre>"
         )
         await m.reply(
             text=f"Menga {language['name']} kodlaringiz manashu namunadagidek yuboring."
