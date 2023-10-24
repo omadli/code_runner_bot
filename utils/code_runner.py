@@ -23,7 +23,7 @@ def run_in_message(language: dict, router: Router):
             .set_version(language["version"])
             .add_file(
                 piston_rspy.File(
-                    name=f"test.{language['extension']}",
+                    name=language['file_name'],
                     content=code,
                 )
             ).set_stdin(stdin)
@@ -37,10 +37,9 @@ def run_in_message(language: dict, router: Router):
             if len(output) > 2000:
                 await msg.reply("Natija hajmi juda katta, ruxsat etilgan hajm - 2000 ta belgi")
             else:
-                error = ""
                 if response.compile:
-                    error = response.compile.stderr
-                error = error or response.run.stderr
+                    await msg.reply("Compilation:" + f"\n<code>{html.escape(response.compile.output)}</code>")
+                error = response.run.stderr
                 if error:
                     await msg.reply("Xatolik:" + f"\n<code>{html.escape(error)}</code>")
                 else:
@@ -50,7 +49,7 @@ def run_in_message(language: dict, router: Router):
     async def empty_cmd(msg: types.Message):
         m = await msg.bot.send_message(
             chat_id=msg.from_user.id,
-            text=f"/{command}\n<code>{html.escape(language['example'])}</code>"
+            text=f"/{command}\n<code class='language-{language['name']}'>{html.escape(language['example'])}</code>"
         )
         await m.reply(
             text=f"Menga {language['name']} kodlaringiz manashu namunadagidek yuboring."
