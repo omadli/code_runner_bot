@@ -176,9 +176,9 @@ LANGUAGES = {
         "example": "print(\"Hello, World!\")"
     },
     
-    "sqlite3": {
+    "sql": {
         "name": "sqlite3",
-        "command": "sqlite3",
+        "command": "sql",
         "file_name": "test.sql",
         "version": "3.36.0",
         "example": "SELECT \"Hello world\";"

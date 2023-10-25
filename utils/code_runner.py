@@ -55,7 +55,7 @@ def run_in_message(language: dict, router: Router):
             text=f"Menga {language['name']} kodlaringiz manashu namunadagidek yuboring."
         )
     
-    # for codes
+    # for codes 
     router.message.register(cmd_runner, F.text.startswith(f"/{command}\n"))
     
     # for edited messages
