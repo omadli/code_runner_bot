@@ -5,7 +5,7 @@ env.read_env()
 
 BOT_TOKEN = env.str("BOT_TOKEN")
 DEBUG = env.bool("DEBUG")
-ADMINS = env.list("ADMINS")
+ADMINS = list(map(int, env.list("ADMINS")))
 DB_URL = env.str("DB_URL")
 USE_REDIS = env.bool("USE_REDIS", False)
 REDIS_DB = env.int("REDIS_DB", 0)

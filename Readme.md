@@ -46,6 +46,11 @@ Install and configure Postgresql or MySQL. Create schemas using these commands:
 $ aerich init -t settings.TORTOISE_ORM
 $ aerich init-db
 ```
+Migrations:
+```shell
+$ aerich migrate
+$ aerich upgrade
+```
 
 # Running bot
 Running bot using this command:

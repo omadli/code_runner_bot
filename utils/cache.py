@@ -1,4 +1,5 @@
 from aiocache import caches
+import aiocache
 from settings import USE_REDIS, REDIS_DB, REDIS_PASSWORD
 
 
@@ -28,5 +29,7 @@ caches.set_config({
 
 if USE_REDIS:
     cache = caches.get("redis_alt")
+    cache : aiocache.RedisCache
 else:
     cache = caches.get("default")
+    cache: aiocache.SimpleMemoryCache

@@ -1,22 +1,17 @@
 import logging
 import asyncio
-from aiogram import Dispatcher, Bot
-from aiogram.enums.parse_mode import ParseMode
-from aiogram.fsm.storage.memory import MemoryStorage
 
-
-from settings import BOT_TOKEN, DEBUG
-from handlers import include_all_routers
+from loader import bot, dp
+from settings import DEBUG
 from utils.startup import on_startup
+from handlers import include_all_routers
+from middlewares.logging_updates import LoggingUpdatesMiddleware
 
-bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
-dp = Dispatcher(
-    storage=MemoryStorage()
-)
 
 log_level = logging.INFO
 if DEBUG:
     log_level = logging.DEBUG
+    dp.update.middleware.register(LoggingUpdatesMiddleware())
 
 logging.basicConfig(
     format=u'%(filename)s [LINE:%(lineno)d] #%(levelname)-8s [%(asctime)s]  %(message)s',
