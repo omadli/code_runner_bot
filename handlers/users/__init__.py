@@ -16,7 +16,7 @@ user_router.message.filter(F.chat.type == 'private')
 user_router.include_router(help_router)
 user_router.include_router(start_router)
 user_router.include_router(about_router)
-user_router.include_router(unknown_router)
+# user_router.include_router(unknown_router)
 
 user_router.message.middleware.register(DatabaseMiddleware())
 user_router.message.middleware.register(ThrottlingMiddleware())
